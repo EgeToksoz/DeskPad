@@ -70,9 +70,6 @@ class ScreenViewController: SubscriberViewController<ScreenViewData>, NSWindowDe
     override func update(with viewData: ScreenViewData) {
         if viewData.isWindowHighlighted != isWindowHighlighted {
             isWindowHighlighted = viewData.isWindowHighlighted
-            view.window?.setContentSize(viewData.resolution)
-            view.window?.contentAspectRatio = viewData.resolution
-            view.window?.center()
             view.window?.backgroundColor = isWindowHighlighted
                 ? NSColor(named: "TitleBarActive")
                 : NSColor(named: "TitleBarInactive")
