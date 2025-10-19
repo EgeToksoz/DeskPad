@@ -66,6 +66,8 @@ class ScreenViewController: SubscriberViewController<ScreenViewData>, NSWindowDe
             // Macs with Notch
             CGVirtualDisplayMode(width: 1512, height: 945, refreshRate: 120),
             CGVirtualDisplayMode(width: 1800, height: 1125, refreshRate: 120),
+            CGVirtualDisplayMode(width: 1512, height: 915, refreshRate: 120),
+            CGVirtualDisplayMode(width: 1800, height: 1095, refreshRate: 120),
         ]
         display.apply(settings)
     }
