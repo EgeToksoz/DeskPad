@@ -1,0 +1,47 @@
+name: Build DeskPad
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to create'
+        default: '1.2'
+        required: true
+        type: string
+
+env:
+  LEVEL: ${{ inputs.version }}
+
+jobs:   
+  build-macos:
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: xcodebuild
+      run: |
+        xcodebuild \
+        -scheme "DeskPad" \
+        -project "DeskPad.xcodeproj" \
+        -configuration "Release" \
+        -sdk macosx \
+        -derivedDataPath "build" \
+        ARCHS="arm64 x86_64" \
+        ONLY_ACTIVE_ARCH=NO \
+        build
+        cd build/Build/Products/release
+        ditto -c -k --keepParent DeskPad.app DeskPad.zip
+        
+
+    - name: Create GitHub Draft
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: v${{ env.LEVEL }}
+        name: DeskPad v${{ env.LEVEL }}
+        draft: true
+        prerelease: false
+        files: build/Build/Products/release/DeskPad.zip
