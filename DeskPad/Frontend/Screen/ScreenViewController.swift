@@ -68,6 +68,9 @@ class ScreenViewController: SubscriberViewController<ScreenViewData>, NSWindowDe
             CGVirtualDisplayMode(width: 1800, height: 1125, refreshRate: 120),
             CGVirtualDisplayMode(width: 1512, height: 915, refreshRate: 120),
             CGVirtualDisplayMode(width: 1800, height: 1095, refreshRate: 120),
+            // iPad Pro 11"
+            CGVirtualDisplayMode(width: 2388, height: 1668, refreshRate: 120),
+            CGVirtualDisplayMode(width: 1668, height: 2388, refreshRate: 120),
         ]
         display.apply(settings)
     }
